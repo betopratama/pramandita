@@ -6,7 +6,7 @@ let activeIndex = 0;
 let activePlayer = null;
 
 const youtubePoster = (id) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
-const youtubeEmbed = (item) => `<iframe class="clean-youtube-frame" src="https://www.youtube-nocookie.com/embed/${item.id}?autoplay=1&controls=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&playsinline=1" title="${item.title}" tabindex="-1" allow="autoplay; encrypted-media" aria-hidden="true"></iframe><span class="player-mask player-mask-top" aria-hidden="true"></span><span class="player-mask player-mask-bottom" aria-hidden="true"></span>`;
+const youtubeEmbed = (item) => `<iframe class="clean-youtube-frame" src="https://www.youtube-nocookie.com/embed/${item.id}?autoplay=1&controls=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&playsinline=1&origin=${encodeURIComponent(location.origin)}" title="${item.title}" tabindex="-1" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" aria-hidden="true"></iframe><span class="player-mask player-mask-top" aria-hidden="true"></span><span class="player-mask player-mask-bottom" aria-hidden="true"></span>`;
 const mobilePoster = (item) => `<img src="${youtubePoster(item.id)}" alt="" width="480" height="360" loading="lazy"><span class="play-button" aria-hidden="true"></span>`;
 
 function previewMarkup(item, playing = false) {
@@ -64,13 +64,34 @@ preview.addEventListener("click", (event) => {
 setPreview(0);
 
 const microstockGrid = document.querySelector("[data-microstock-grid]");
+const stockVideoUrl = (asset) => `https://previews.customer.envatousercontent.com/${asset}/watermarked_preview/watermarked_preview.mp4`;
 microstockWork.forEach((item) => {
   const article = document.createElement("article");
   article.className = `stock-card tone-${item.tone}`;
   article.dataset.category = item.category;
   const posterTitle = item.title.split(/\s+/).slice(0, 2).join(" ");
-  article.innerHTML = `<div class="stock-poster" role="img" aria-label="Graphic poster for ${item.title}"><span class="stock-mark">${posterTitle}</span></div><div class="stock-meta"><h3>${item.title}</h3></div>`;
+  const media = item.asset
+    ? `<div class="stock-media"><video class="stock-video" data-src="${stockVideoUrl(item.asset)}" muted loop playsinline preload="none" aria-label="Video preview for ${item.title}"></video><span class="stock-loading">Loading preview</span></div>`
+    : `<div class="stock-poster" role="img" aria-label="Preview pending for ${item.title}"><span class="stock-mark">${posterTitle}</span><span class="stock-unavailable">Preview processing</span></div>`;
+  article.innerHTML = `${media}<div class="stock-meta"><h3>${item.title}</h3></div>`;
   microstockGrid.append(article);
+});
+
+const stockVideoObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    const video = entry.target;
+    if (entry.isIntersecting) {
+      if (!video.src) video.src = video.dataset.src;
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  });
+}, { rootMargin: "180px 0px", threshold: 0.18 });
+document.querySelectorAll(".stock-video").forEach((video) => {
+  video.addEventListener("playing", () => video.closest(".stock-media")?.classList.add("is-playing"), { once: true });
+  video.addEventListener("error", () => video.closest(".stock-media")?.classList.add("has-error"));
+  stockVideoObserver.observe(video);
 });
 
 document.querySelectorAll("[data-filter]").forEach((button) => {
