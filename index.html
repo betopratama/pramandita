@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio of Fanny Pramandita, freelance motion design artist and microstock creator.">
+  <title>Fanny Pramandita — Motion Design Artist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#work">Skip to selected work</a>
+
+  <header class="site-header" data-header>
+    <a class="wordmark" href="#top" aria-label="Fanny Pramandita, back to top">FP</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" aria-label="Primary navigation">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#microstock">Microstock</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">Fanny<br>Pramandita</h1>
+        <p>Freelance motion design artist creating animated stories, campaign visuals, and microstock assets.</p>
+        <a class="primary-action" href="#work">View selected work</a>
+      </div>
+      <figure class="hero-portrait" data-parallax>
+        <img src="Assets/fanny-hero.png" alt="Portrait of Fanny Pramandita in soft daylight" width="1152" height="1440">
+      </figure>
+      <p class="hero-note">Available for freelance collaborations</p>
+    </section>
+
+    <section class="work-section section-frame" id="work" aria-labelledby="work-title">
+      <div class="section-heading reveal">
+        <h2 id="work-title">Selected work</h2>
+        <p>Team projects I helped bring to life through selected stages of motion design and visual production.</p>
+      </div>
+      <div class="work-browser">
+        <div class="work-list" data-work-list aria-label="Selected motion projects"></div>
+        <aside class="work-preview" data-work-preview aria-live="polite"></aside>
+      </div>
+      <div class="work-stills" aria-label="Frames from selected collaborative projects">
+        <img src="https://i.ytimg.com/vi/BOUDeEWnJ5Y/hqdefault.jpg" alt="Frame from Bukku, Belanja Buku Jadi Mudah" width="480" height="360" loading="lazy">
+        <img src="https://i.ytimg.com/vi/bJlazVEQaPM/hqdefault.jpg" alt="Frame from Bisma App from Bekraf" width="480" height="360" loading="lazy">
+        <img src="https://i.ytimg.com/vi/bR6OBhgKjG0/hqdefault.jpg" alt="Frame from Miami Bangpu" width="480" height="360" loading="lazy">
+        <img src="https://i.ytimg.com/vi/uxZoylmDwGw/hqdefault.jpg" alt="Frame from MESTAKARA" width="480" height="360" loading="lazy">
+      </div>
+    </section>
+
+    <section class="about-section" id="about" aria-labelledby="about-title">
+      <figure class="about-portrait reveal">
+        <img src="Assets/fanny-about.png" alt="Close portrait of Fanny Pramandita" width="1254" height="1254" loading="lazy">
+      </figure>
+      <div class="about-copy reveal">
+        <h2 id="about-title">Motion, made<br>together.</h2>
+        <p class="about-lead">I work as a freelance motion design artist, joining teams where an extra pair of thoughtful hands can move a project forward.</p>
+        <p>My experience spans animated campaigns, explainers, title sequences, social content, and event visuals. My contribution changes with each production: I take responsibility for selected parts of the process, adapt to the established visual direction, and collaborate toward a consistent final result.</p>
+        <p>Alongside client work, I create microstock assets—small, reusable pieces designed to make everyday editing faster and more expressive.</p>
+        <dl class="profile-facts">
+          <div><dt>Practice</dt><dd>Freelance motion design</dd></div>
+          <div><dt>Approach</dt><dd>Collaborative and detail-focused</dd></div>
+          <div><dt>Also creating</dt><dd>Microstock motion assets</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="microstock-section section-frame" id="microstock" aria-labelledby="microstock-title">
+      <div class="microstock-intro reveal">
+        <h2 id="microstock-title">Made to move.</h2>
+        <p>A growing collection of practical motion elements, from playful interface stickers to technology-led loops.</p>
+      </div>
+      <div class="filter-controls" role="group" aria-label="Filter microstock work">
+        <button type="button" class="is-active" data-filter="all" aria-pressed="true">All work</button>
+        <button type="button" data-filter="Stickers & Social Elements" aria-pressed="false">Stickers & social</button>
+        <button type="button" data-filter="Technology & Abstract Motion" aria-pressed="false">Technology & abstract</button>
+      </div>
+      <div class="microstock-grid" data-microstock-grid></div>
+      <p class="embed-note">Official VideoHive previews are represented by static posters because the provider currently blocks third-party embedding.</p>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Let’s make it<br>move.</h2>
+      <a class="contact-email" href="mailto:pramanditafanny@gmail.com?subject=Motion%20design%20project%20inquiry">pramanditafanny@gmail.com</a>
+      <div class="footer-meta">
+        <span>Fanny Pramandita</span>
+        <span>Freelance motion design artist</span>
+        <a href="#top">Back to top</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
