@@ -1,5 +1,8 @@
 .taste-skill/
 .vercel/
+.vercel-appdata/
+.vercel-cli/
+.herenow/
 
 # Source/reference assets not used by published portfolio
 Assets/ALTEEZ In Action/
